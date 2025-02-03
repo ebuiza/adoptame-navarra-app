@@ -1,12 +1,15 @@
+import Link from "next/link";
+
 export default function Layout({ children }) {
   return (
     <html lang="es">
       <body>
         <nav>
-          <a href="/">Inicio</a>
-          <a href="/perros">Perros</a>
-          <a href="/categorias">Categorías</a>
-          <a href="/adoptar">Adoptar</a>
+          <Link href="/">Inicio</Link>
+          <Link href="/perros">Perros</Link>
+          <Link href="/adoptar">Adoptar</Link>
+          <Link href="/auth/login">Login</Link>
+          <Link href="/auth/register">Registro</Link>
         </nav>
         {children}
       </body>
