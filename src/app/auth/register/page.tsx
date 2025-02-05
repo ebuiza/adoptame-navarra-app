@@ -1,32 +1,34 @@
 "use client";
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("adoptante");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, role }),
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { role: "adoptante" } },
     });
-    const data = await res.json();
-    alert(data.message);
+
+    if (error) return setError(error.message);
+
+    router.push("/auth/login");
   };
 
   return (
     <div>
       <h1>Registro</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleRegister}>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="adoptante">Adoptante</option>
-          <option value="admin">Administrador</option>
-        </select>
         <button type="submit">Registrarse</button>
       </form>
     </div>
