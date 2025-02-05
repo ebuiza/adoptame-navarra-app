@@ -1,7 +1,23 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+interface WebpackConfig {
+  resolve: {
+    alias: {
+      punycode: boolean;
+    };
+  };
+}
+
+interface NextCustomConfig extends NextConfig {
+  webpack: (config: WebpackConfig) => WebpackConfig;
+}
+
+const nextConfig: NextCustomConfig = {
+  webpack: (config: WebpackConfig): WebpackConfig => {
+    config.resolve.alias.punycode = false;
+    return config;
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
+
