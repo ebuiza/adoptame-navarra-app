@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { useAdoptar } from "@/app/store/adoptar";
 
 export default function Adoptar() {

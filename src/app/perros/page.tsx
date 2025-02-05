@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import React from "react";
 import { useAdoptar } from "@/app/store/adoptar";
 
 interface Perro {

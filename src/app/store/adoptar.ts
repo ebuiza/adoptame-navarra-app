@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import React from "react";
 
 interface Perro {
     id: number;
