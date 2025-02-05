@@ -9,12 +9,6 @@ export default function Register() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  interface SignUpOptions {
-    data: {
-      role: string;
-    };
-  }
-
   interface SignUpResponse {
     error: {
       message: string;
