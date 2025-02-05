@@ -10,5 +10,36 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") // Usa la URL de Supabase
+}
+
+model usuarios {
+  id        String  @id @default(uuid())  // ID único
+  email     String  @unique
+  password  String
+  //role      Role    @default(adoptante)   // 'adoptante' o 'admin'
+}
+
+model animales {
+  id        String @id @default(uuid())
+  nombre    String
+  raza      String
+  edad      Int
+  imagen    String?
+  adoptado  Boolean @default(false)
+}
+
+model Adopcion {
+  id        String   @id @default(uuid())
+  usuariosId String
+  animalesId   String
+  fecha     DateTime @default(now())
+
+  usuario   usuarios  @relation(fields: [usuariosId], references: [id])
+  perro     animales    @relation(fields: [animalesId], references: [id])
+}
+
+enum Role {
+  adoptante
+  admin
 }
