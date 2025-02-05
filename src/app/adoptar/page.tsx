@@ -1,5 +1,5 @@
 "use client";
-import { useAdoptar } from "../store/adoptar";
+import { useAdoptar } from "@/app/store/adoptar";
 
 export default function Adoptar() {
   const { items, removeFromAdoptar } = useAdoptar();
@@ -8,7 +8,7 @@ export default function Adoptar() {
     <div>
       <h1>Adopciones</h1>
       {items.length === 0 ? (
-        <p>Aún no has adoptado a ningún perro.</p>
+        <p>Aún no has seleccionado a ningún perro para adoptar.</p>
       ) : (
         items.map((item) => (
           <div key={item.id}>

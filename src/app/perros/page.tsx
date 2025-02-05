@@ -1,9 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useAdoptar } from "../store/adoptar";
+import { useAdoptar } from "@/app/store/adoptar";
+
+interface Perro {
+  id: number;
+  nombre: string;
+  edad: number;
+  raza: string;
+}
 
 export default function Perros() {
-  const [perros, setPerros] = useState([]);
+  const [perros, setPerros] = useState<Perro[]>([]);
   const { addToAdoptar } = useAdoptar();
 
   useEffect(() => {
@@ -19,7 +26,7 @@ export default function Perros() {
         <div key={p.id}>
           <h3>{p.nombre}</h3>
           <p>Edad: {p.edad} años</p>
-          <p>Categoría: {p.categoria}</p>
+          <p>Raza: {p.raza}</p>
           <button onClick={() => addToAdoptar(p)}>Adoptar</button>
         </div>
       ))}

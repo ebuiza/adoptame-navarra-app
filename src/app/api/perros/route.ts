@@ -1,10 +1,10 @@
+import { supabase } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 
-const perros = [
-  { id: 1, nombre: "Luna", edad: 2, categoria: "Pequeño" },
-  { id: 2, nombre: "Max", edad: 4, categoria: "Mediano" },
-];
-
 export async function GET() {
+  const { data: perros, error } = await supabase.from("animales").select("*").eq("tipo", "perro");
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
   return NextResponse.json(perros);
 }

@@ -9,9 +9,21 @@ export default function Register() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleRegister = async (e) => {
+  interface SignUpOptions {
+    data: {
+      role: string;
+    };
+  }
+
+  interface SignUpResponse {
+    error: {
+      message: string;
+    } | null;
+  }
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signUp({
+    const { error }: SignUpResponse = await supabase.auth.signUp({
       email,
       password,
       options: { data: { role: "adoptante" } },
