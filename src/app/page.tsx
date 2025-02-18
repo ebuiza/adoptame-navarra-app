@@ -48,7 +48,7 @@ export default function Home() {
             <div className="flex flex-col items-center">
               <Link href="/informacion">
                 <p className="text-center">Otros...</p>
-                <LuDiamondPlus className="mt-2 fill-negro text-rosa-gris h-auto sm:w-6 md:w-10 lg:w-14" />
+                <LuDiamondPlus className="mt-2 h-auto sm:w-6 md:w-10 lg:w-14" />
               </Link>
             </div>
           </div>
