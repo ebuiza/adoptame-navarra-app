@@ -1,40 +1,14 @@
-"use client";
-import { useState } from "react";
-import React from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+import LoginForm from "./loginForm";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const router = useRouter();
+export default async function LoginPage() {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getSession();
 
-  interface LoginResponse {
-    role: string;
+  if (data.session) {
+    redirect("/auth/account"); // Redirige si el usuario ya está autenticado
   }
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const data: LoginResponse = await res.json();
-    if (data.role === "admin") {
-      router.push("/admin");
-    } else {
-      router.push("/");
-    }
-  };
-
-  return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-    </div>
-  );
+  return <LoginForm />;
 }

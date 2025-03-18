@@ -14,7 +14,7 @@ export default function Home() {
       {/*Panel de Más información*/}
       <section className="p-8 flex justify-center">
         <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-3/4 flex">
-          <img src={dogInformation.src} alt="Dog picture" className="w-1/4 h-auto rounded-lg" />
+          <img src={dogInformation.src} alt="Dog picture" className="w-1/4 h-auto object-contain rounded-lg" />
           <div className="mx-40 flex flex-col items-center justify-center">
             <h2 className="text-2xl font-bold font-qs">Nunca compres, adopta</h2>
             <p className="text-negro mt-8">
@@ -34,7 +34,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold font-qs">Escoge a tu animal de compañía</h2>
           <div className="flex justify-center mt-4 space-x-20">
             <div className="flex flex-col items-center">
-              <Link href="/informacion">
+              <Link href="/perros">
                 <p className="text-center">Perro</p>
                 <PiDogDuotone className="mt-2 text-negro h-auto sm:w-6 md:w-10 lg:w-14" />
               </Link>
@@ -65,8 +65,8 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-16 mt-4 mx-20">
           {[
             { titulo: 'Inicia sesión', info: 'Accede a tu cuenta o regístrate para empezar tu proceso de adopción.', logo: 'FaUser', link: '/auth/login' },
-            { titulo: 'Usa los filtros', info: 'Filtra por especie, tamaño o edad para encontrar tu compañero ideal.', logo: 'FaSearch', link: '/adoptar' },
-            { titulo: 'Rellena el formulario', info: 'Completa tus datos y detalles sobre tu hogar.', logo: 'FaCheck', link: '/auth/login' },
+            { titulo: 'Usa los filtros', info: 'Filtra por especie, tamaño o edad para encontrar tu compañero ideal.', logo: 'FaSearch', link: 'adoptar' },
+            { titulo: 'Rellena el formulario', info: 'Completa tus datos y detalles sobre tu hogar.', logo: 'FaCheck', link: '/auth/account' },
             { titulo: 'Espera respuesta', info: 'Revisaremos tu solicitud y te contactaremos pronto.', logo: 'FaRegClock', link: '#' },
           ].map((paso, i) => (
               <div key={i} className="bg-rosa-claro p-4 shadow-md rounded-lg flex flex-col items-center">
