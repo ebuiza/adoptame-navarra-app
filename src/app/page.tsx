@@ -65,7 +65,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-16 mt-4 mx-20">
           {[
             { titulo: 'Inicia sesión', info: 'Accede a tu cuenta o regístrate para empezar tu proceso de adopción.', logo: 'FaUser', link: '/auth/login' },
-            { titulo: 'Usa los filtros', info: 'Filtra por especie, tamaño o edad para encontrar tu compañero ideal.', logo: 'FaSearch', link: 'adoptar' },
+            { titulo: 'Usa los filtros', info: 'Filtra por especie, tamaño o edad para encontrar tu compañero ideal.', logo: 'FaSearch', link: '/adoptar' },
             { titulo: 'Rellena el formulario', info: 'Completa tus datos y detalles sobre tu hogar.', logo: 'FaCheck', link: '/auth/account' },
             { titulo: 'Espera respuesta', info: 'Revisaremos tu solicitud y te contactaremos pronto.', logo: 'FaRegClock', link: '#' },
           ].map((paso, i) => (
@@ -73,7 +73,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold font-qs">Paso {i + 1}</h3>
                 <h4 className="text-center text-xl font-qs">{paso.titulo}</h4>
                 <p className="text-center">{paso.info}</p>
-                <Link href={`/${paso.link}`}>
+                <Link href={`${paso.link}`}>
                   {React.createElement(require('react-icons/fa')[paso.logo], { className: "mt-4 allign-center fill-negro h-auto sm:w-6 md:w-10 lg:w-14" })}
                 </Link>
               </div>
