@@ -6,8 +6,8 @@ export default function registroPage() {
   const [registroState, registroAction] = useActionState(signup, { error: '', values: {}})
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-96">
+    <div className="flex justify-center items-center min-h-screen mt-6">
+      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-1/4">
         <h2 className="text-center text-2xl font-bold text-negro mb-4">Registrarse</h2>
         {registroState.error && <p className="text-red-500 text-sm text-center">{registroState.error}</p>}
         <form className="space-y-4">

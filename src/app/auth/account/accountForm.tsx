@@ -8,7 +8,7 @@ export default function accountPage({ user }: { user: User }) {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="bg-rosa-gris space-y-4 p-8 rounded-lg shadow-lg w-96">
+      <div className="bg-rosa-gris space-y-4 p-8 rounded-lg shadow-lg w-1/4">
         <h2 className="text-center text-2xl font-bold text-negro mb-4">Cuenta</h2>
         {updateState.error && <p className="text-red-500 text-sm text-center">{updateState.error}</p>}
         <form className="space-y-4">

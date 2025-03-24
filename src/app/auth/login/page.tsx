@@ -4,9 +4,9 @@ import LoginForm from "./loginForm";
 
 export default async function LoginPage() {
   const supabase = await createClient();
-  const { data } = await supabase.auth.getSession();
+  const { data } = await supabase.auth.getUser();
 
-  if (data.session) {
+  if (data.user) {
     redirect("/auth/account"); // Redirige si el usuario ya está autenticado
   }
 
