@@ -2,12 +2,15 @@ import { createClient } from "@/utils/supabase/server";
 import SearchForm from "./adoptarForm";
 import { getAnimales } from "./adoptarAction";
 
-export default async function AdoptarPage({ searchParams }: { searchParams: { tipo?: string } }) {
+export default async function AdoptarPage({ searchParams }: { searchParams: Promise<{ tipo?: string }> }) {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
+
+  const params = await searchParams;
+  const tipo = params.tipo;
   const formData = new FormData();
-  if (searchParams.tipo) {
-    formData.append("tipo", searchParams.tipo);
+  if (tipo) {
+    formData.append("tipo", tipo);
   }
   const animales = await getAnimales(null, formData);
 
