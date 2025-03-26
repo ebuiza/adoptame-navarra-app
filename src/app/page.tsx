@@ -34,22 +34,31 @@ export default function Home() {
           <h2 className="text-2xl font-bold font-qs">Escoge a tu animal de compañía</h2>
           <div className="flex justify-center mt-4 space-x-20">
             <div className="flex flex-col items-center">
-              <Link href="/perros">
-                <p className="text-center">Perro</p>
-                <PiDogDuotone className="mt-2 text-negro h-auto sm:w-6 md:w-10 lg:w-14" />
-              </Link>
+              <form action="/adoptar" method="GET">
+                <input type="hidden" name="tipo" value="perro" />
+                <button type="submit" className="text-center">
+                  <p className="text-center">Perro</p>
+                  <PiDogDuotone className="mt-2 text-negro h-auto sm:w-6 md:w-10 lg:w-14" />
+                </button>
+              </form>
             </div>
             <div className="flex flex-col items-center">
-              <Link href="/informacion">
-                <p className="text-center">Gato</p>
-                <PiCatDuotone className="mt-2 text-negro h-auto sm:w-6 md:w-10 lg:w-14" />
-              </Link>
+              <form action="/adoptar" method="GET">
+                <input type="hidden" name="tipo" value="gato" />
+                <button type="submit" className="text-center">
+                  <p className="text-center">Gato</p>
+                  <PiCatDuotone className="mt-2 text-negro h-auto sm:w-6 md:w-10 lg:w-14" />
+                </button>
+              </form>
             </div>
             <div className="flex flex-col items-center">
-              <Link href="/informacion">
-                <p className="text-center">Otros...</p>
-                <LuDiamondPlus className="mt-2 h-auto sm:w-6 md:w-10 lg:w-14" />
-              </Link>
+              <form action="/adoptar" method="GET">
+                <input type="hidden" name="tipo" value="otros" />
+                <button type="submit" className="text-center">
+                  <p className="text-center">Otros...</p>
+                  <LuDiamondPlus className="mt-2 h-auto sm:w-6 md:w-10 lg:w-14" />
+                </button>
+              </form>
             </div>
           </div>
         </div>

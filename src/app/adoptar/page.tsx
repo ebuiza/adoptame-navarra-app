@@ -1,24 +1,25 @@
-"use client";
-import React from "react";
-import { useAdoptar } from "@/app/store/adoptar";
+import { createClient } from "@/utils/supabase/server";
+import SearchForm from "./adoptarForm";
+import { getAnimales } from "./adoptarAction";
 
-export default function Adoptar() {
-  const { items, removeFromAdoptar } = useAdoptar();
+export default async function AdoptarPage({ searchParams }: { searchParams: { tipo?: string } }) {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  const formData = new FormData();
+  if (searchParams.tipo) {
+    formData.append("tipo", searchParams.tipo);
+  }
+  const animales = await getAnimales(null, formData);
 
-  return (
-    <div>
-      <h1>Adopciones</h1>
-      {items.length === 0 ? (
-        <p>Aún no has seleccionado a ningún perro para adoptar.</p>
-      ) : (
-        items.map((item) => (
-          <div key={item.id}>
-            <h3>{item.nombre}</h3>
-            <p>Edad: {item.edad} años</p>
-            <button onClick={() => removeFromAdoptar(item.id)}>Cancelar adopción</button>
-          </div>
-        ))
-      )}
-    </div>
-  );
+  if (data.user) {
+    if(data.user.user_metadata.rol === 'adoptante'){
+        return <SearchForm rol='adoptante' animales={animales} />;
+    }else if(data.user.user_metadata.rol === 'entidad'){
+        return <SearchForm rol='entidad' animales={animales}/>;
+    }else if(data.user.user_metadata.rol === 'admin'){
+        return <SearchForm rol='admin' animales={animales}/>;
+    }
+  }else{
+    return <SearchForm rol='guest' animales={animales}/>;
+  }
 }

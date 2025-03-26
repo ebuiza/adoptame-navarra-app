@@ -1,11 +1,15 @@
+'use client'
+
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 import "./globals.css";
 import { FaUserCircle, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { PiInstagramLogoFill } from "react-icons/pi";
 import { FaX, FaXTwitter } from "react-icons/fa6";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   return (
     <html lang="es">
       <body className="bg-rosa-claro flex flex-col min-h-screen">
@@ -50,9 +54,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </svg>
             <span className="text-fucsia-oscuro text-4xl font-bold whitespace-nowrap">Adóptame Navarra</span>
           </Link>
-          <Link className="text-negro text-xl font-bold" href="/adoptar">Adoptar</Link>
-          <Link className="text-negro text-xl font-bold" href="/contacto">Contacto</Link>
-          <Link className="text-negro text-xl font-bold" href="/informacion">Más información</Link>
+          <Link className={`text-negro text-xl font-bold ${pathname === '/adoptar' ? 'bg-rosa-oscuro' : ''}`} href="/adoptar">Adoptar</Link>
+          <Link className={`text-negro text-xl font-bold ${pathname === '/contacto' ? 'bg-rosa-oscuro' : ''}`} href="/contacto">Contacto</Link>
+          <Link className={`text-negro text-xl font-bold ${pathname === '/informacion' ? 'bg-rosa-oscuro' : ''}`} href="/informacion">Más información</Link>
           <Link href="/auth/login"><FaUserCircle className="fill-fucsia-oscuro h-auto sm:w-6 md:w-10 lg:w-14 align-middle"/></Link>
         </nav>
 
