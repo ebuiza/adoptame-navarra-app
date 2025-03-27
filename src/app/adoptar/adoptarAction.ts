@@ -54,5 +54,21 @@ export async function adoptarAnimal(formData: FormData) {
   const { data, error } = await query; 
 
   revalidatePath("/");
+}
 
+export async function setAnimal(formData: FormData) {
+  const supabase = await createClient();
+  if(formData){
+    let query = supabase.from("animales").insert({ 
+      nombre : formData?.get("nombre") as string, 
+      tipo : formData?.get("tipo") as string,
+      size : formData?.get("size") as string,
+      edad : formData?.get("edad") as string,
+      sexo : formData?.get("sexo") as string,
+      adoptado : false,
+    });
+    
+    const { error } = await query;
+  }
+  revalidatePath("/");
 }
