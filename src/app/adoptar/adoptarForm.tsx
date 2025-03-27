@@ -42,6 +42,13 @@ export default function SearchPage({ rol, animales }: { rol: string; animales: a
             Buscar
           </button>
         </form>
+        {(rol === "entidad" || rol === "admin") && (
+          <form action="/altaAnimal" method="GET" className="mt-4 flex justify-center">
+            <button className="bg-fucsia-oscuro text-white px-4 py-2 rounded-md font-bold">
+              Alta de mascotas
+            </button>
+          </form>
+        )}
         <div className="w-3/4 mt-6">
             <h2 className="text-2xl text-center font-bold text-fucsia-oscuro">Perros para adoptar</h2>
               <div className="flex flex-wrap gap-4 justify-center">
