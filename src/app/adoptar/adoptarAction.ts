@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export async function getAnimales(prevState: any, formData: FormData) {
   const supabase = await createClient();
-  let query = supabase.from("animales").select("*").eq("adoptado", false);
+  let query = supabase.from("animales").select("*").is("adoptado", null);
 
   const tipo = formData?.get("tipo") as string;
   const size = formData?.get("size") as string;
@@ -48,14 +48,20 @@ export async function deleteAnimal(formData: FormData) {
 
 export async function adoptarAnimal(formData: FormData) {
   const supabase = await createClient();
+  const { data : userData } = await supabase.auth.getUser();
 
   const id =  Number(formData.get("id"));
 
-  let query = supabase.from("animales").update({"adoptado" : true}).eq("id", id).select("*");
+  if (!userData.user) {
+    redirect("/auth/login");
+  }else{
 
-  const { data, error } = await query; 
+    let query = supabase.from("animales").update({"adoptado" : userData.user.email}).eq("id", id).select("*");
 
-  revalidatePath("/");
+    const { data, error } = await query; 
+  
+    revalidatePath("/");
+  }
 }
 
 export async function setAnimal(prevState: any, formData: FormData) {
@@ -67,7 +73,7 @@ export async function setAnimal(prevState: any, formData: FormData) {
       size : formData?.get("size") as string,
       edad : formData?.get("edad") as string,
       sexo : formData?.get("sexo") as string,
-      adoptado : false
+      adoptado : null
     });
     
     const { error } = await query;
