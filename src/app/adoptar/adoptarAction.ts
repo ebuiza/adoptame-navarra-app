@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function getAnimales(prevState: any, formData: FormData) {
   const supabase = await createClient();
@@ -41,7 +42,8 @@ export async function deleteAnimal(formData: FormData) {
 
   const { error } = await query;
 
-  revalidatePath("/");
+  revalidatePath("/adoptar");
+  redirect("/adoptar");
 }
 
 export async function adoptarAnimal(formData: FormData) {
@@ -56,7 +58,7 @@ export async function adoptarAnimal(formData: FormData) {
   revalidatePath("/");
 }
 
-export async function setAnimal(formData: FormData) {
+export async function setAnimal(prevState: any, formData: FormData) {
   const supabase = await createClient();
   if(formData){
     let query = supabase.from("animales").insert({ 
@@ -65,10 +67,15 @@ export async function setAnimal(formData: FormData) {
       size : formData?.get("size") as string,
       edad : formData?.get("edad") as string,
       sexo : formData?.get("sexo") as string,
-      adoptado : false,
+      adoptado : false
     });
     
     const { error } = await query;
+    if (error) {
+      console.log(error.message);
+    } else {
+      revalidatePath("/adoptar");
+      redirect("/adoptar");
+    }
   }
-  revalidatePath("/");
 }

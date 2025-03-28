@@ -1,9 +1,10 @@
 'use client'
-import { createClient } from "@/utils/supabase/server";
+
+import { useActionState } from "react";
 import { setAnimal } from "../adoptar/adoptarAction";
 
 export default function altaAnimal() {
-  const [setAnimalState, setAnimalAction] = useActionState(setAnimal, { error: '' })
+  const [setAnimalState, setAnimalAction] = useActionState(setAnimal, undefined)
   
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -11,8 +12,8 @@ export default function altaAnimal() {
         <h2 className="text-center text-2xl font-bold text-negro mb-4">Registra una mascota</h2>
         <form className="space-y-4">
           <div>
-            <label className="block text-negro" htmlFor="name">Nombre:</label>
-            <input type="text" name="name" id="name" required className="w-full border-2 border-fucsia-oscuro rounded-md p-2"/>
+            <label className="block text-negro" htmlFor="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" required className="w-full border-2 border-fucsia-oscuro rounded-md p-2"/>
           </div>
           <select name="tipo" required className="w-full border-2 border-fucsia-oscuro rounded-md flex-grow">
             <option value="">Especie</option>
