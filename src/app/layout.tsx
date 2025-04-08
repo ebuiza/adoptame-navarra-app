@@ -1,20 +1,21 @@
 'use client'
 
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import "./globals.css";
-import { FaUserCircle, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { PiInstagramLogoFill } from "react-icons/pi";
 import { FaX, FaXTwitter } from "react-icons/fa6";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <html lang="es">
       <body className="bg-rosa-claro flex flex-col min-h-screen">
         {/*Menú superior*/}
-        <nav className="flex justify-between items-center p-4 shadow-md font-qs">
+        <nav className="relative flex justify-between items-center p-4 shadow-md font-qs">
           <Link className="flex items-center space-x-2" href="/">
             <svg className="fill-fucsia-oscuro h-auto sm:w-6 md:w-10 lg:w-14 align-middle"  viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
@@ -54,10 +55,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </svg>
             <span className="text-fucsia-oscuro text-4xl font-bold whitespace-nowrap">Adóptame Navarra</span>
           </Link>
-          <Link className={`text-negro text-xl font-bold ${pathname === '/adoptar' ? 'bg-rosa-oscuro' : ''}`} href="/adoptar">Adoptar</Link>
-          <Link className={`text-negro text-xl font-bold ${pathname === '/contacto' ? 'bg-rosa-oscuro' : ''}`} href="/contacto">Contacto</Link>
-          <Link className={`text-negro text-xl font-bold ${pathname === '/informacion' ? 'bg-rosa-oscuro' : ''}`} href="/informacion">Más información</Link>
-          <Link href="/auth/login"><FaUserCircle className="fill-fucsia-oscuro h-auto sm:w-6 md:w-10 lg:w-14 align-middle"/></Link>
+          <Link className={`text-negro text-xl font-bold hidden sm:flex ${pathname === '/adoptar' ? 'bg-rosa-oscuro' : ''}`} href="/adoptar">Adoptar</Link>
+          <Link className={`text-negro text-xl font-bold hidden sm:flex ${pathname === '/contacto' ? 'bg-rosa-oscuro' : ''}`} href="/contacto">Contacto</Link>
+          <Link className={`text-negro text-xl font-bold hidden sm:flex ${pathname === '/informacion' ? 'bg-rosa-oscuro' : ''}`} href="/informacion">Más información</Link>
+          <Link href="/auth/login"><FaUserCircle className="fill-fucsia-oscuro h-auto sm:w-6 md:w-10 lg:w-14 align-middle hidden sm:flex"/></Link>
+        
+          <button className="sm:hidden text-fucsia-oscuro text-2xl" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+          {isMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-rosa-claro shadow-md sm:hidden flex flex-col items-center py-4 space-y-3 z-50">
+              <Link className={`text-negro text-xl font-bold ${pathname === '/adoptar' ? 'bg-rosa-oscuro' : ''}`} href="/adoptar" onClick={() => setIsMenuOpen(false)}>Adoptar</Link>
+              <Link className={`text-negro text-xl font-bold ${pathname === '/contacto' ? 'bg-rosa-oscuro' : ''}`} href="/contacto" onClick={() => setIsMenuOpen(false)}>Contacto</Link>
+              <Link className={`text-negro text-xl font-bold ${pathname === '/informacion' ? 'bg-rosa-oscuro' : ''}`} href="/informacion" onClick={() => setIsMenuOpen(false)}>Más información</Link>
+              <Link href="/auth/login"><FaUserCircle className="fill-fucsia-oscuro h-auto sm:w-6 md:w-10 lg:w-14 align-middle" onClick={() => setIsMenuOpen(false)}/></Link>
+            </div>
+          )}
         </nav>
 
         {/*Body*/}
@@ -65,38 +78,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/*Footer*/}
         <footer className="bg-rosa-oscuro text-negro p-6 mt-8">
-          <div className="grid grid-cols-4 gap-4 text-sm mx-40">
-            <div className="flex flex-col items-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm max-w-screen-xl mx-auto">
+            <div className="flex flex-col">
               <h3 className="font-bold font-qs">Sobre nosotros</h3>
               <hr className="h-[2px] my-2 bg-negro border-0" />
               <Link href='#'>Nuestro equipo</Link>
               <Link href='#'>Nuestros métodos</Link>
               <Link href='#'>Contacto</Link>
             </div>
-            <div className="flex flex-col items-left">
+            <div className="flex flex-col">
               <h3 className="font-bold font-qs">Servicios</h3>
               <hr className="h-[2px] my-2 bg-negro border-0" />
               <Link href='#'>Rescate de animales</Link>
               <Link href='#'>Educación ambiental</Link>
               <Link href='#'>Voluntariado</Link>
             </div>
-            <div className="flex flex-col items-left">
+            <div className="flex flex-col">
               <h3 className="font-bold font-qs">Proyectos</h3>
               <hr className="h-[2px] my-2 bg-negro border-0" />
               <Link href='#'>Especies en peligro</Link>
               <Link href='#'>Adopciones responsables</Link>
               <Link href='#'>Apadrinamiento</Link>
             </div>
-            <div className="flex flex-col items-left">
+            <div className="flex flex-col">
               <h3 className="font-bold font-qs">Síguenos</h3>
               <hr className="h-[2px] my-2 bg-negro border-0" />
-              <Link href='#'>Nuestro equipo</Link>
               <p>Contenido:</p>
-              <div className="flex items-center space-x-6">
-                <Link href='#'><FaFacebookF /></Link>
-                <Link href='#'><PiInstagramLogoFill /></Link>
-                <Link href='#'><FaLinkedinIn /></Link>
-                <Link href='#'><FaXTwitter /></Link>
+              <div className="flex items-center space-x-4 mt-2">
+                <Link href="#"><FaFacebookF /></Link>
+                <Link href="#"><PiInstagramLogoFill /></Link>
+                <Link href="#"><FaLinkedinIn /></Link>
+                <Link href="#"><FaXTwitter /></Link>
               </div>
             </div>
           </div>

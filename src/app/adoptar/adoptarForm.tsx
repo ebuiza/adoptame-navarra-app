@@ -12,10 +12,10 @@ export default function SearchPage({ rol, animales }: { rol: string; animales: a
 
   return (
     <div className="flex flex-col items-center min-h-screen">
-      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-3/4 mt-6">
+      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-full max-w-2xl mx-auto px-4">
         <h2 className="text-center text-2xl font-bold text-negro mb-4">Adopta un animal</h2>
         <p className="block text-negro">Filtra tu mascota ideal:</p>
-        <form className="flex items-center w-full space-x-4">
+        <form className="flex flex-col sm:flex-row sm:flex-wrap w-full space-y-4 sm:space-y-0 sm:space-x-4">
           <select name="tipo" className="border-2 border-fucsia-oscuro rounded-md flex-grow">
             <option value="">Especie</option>
             <option value="perro">Perro</option>
@@ -49,9 +49,9 @@ export default function SearchPage({ rol, animales }: { rol: string; animales: a
             </button>
           </form>
         )}
-        <div className="w-3/4 mt-6">
+        <div className="w-full max-w-2xl mt-6">
             <h2 className="text-2xl text-center font-bold text-fucsia-oscuro">Perros para adoptar</h2>
-              <div className="flex flex-wrap gap-4 justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {perros.length > 0 ? (
                 perros.map((animal) => (<Tarjeta key={animal.id} id={animal.id} nombre={animal.nombre} sexo={animal.sexo} imagen={animal.imagen} rol={rol} />))
               ) : (
@@ -59,9 +59,9 @@ export default function SearchPage({ rol, animales }: { rol: string; animales: a
               )}
             </div>
         </div>
-        <div className="w-3/4 mt-6">
+        <div className="w-full max-w-2xl mt-6">
             <h2 className="text-2xl text-center font-bold text-fucsia-oscuro">Gatos para adoptar</h2>
-              <div className="flex flex-wrap gap-4 justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {gatos.length > 0 ? (
                 gatos.map((animal) => (<Tarjeta key={animal.id} id={animal.id} nombre={animal.nombre} sexo={animal.sexo} imagen={animal.imagen} rol={rol} />))
               ) : (
@@ -69,9 +69,9 @@ export default function SearchPage({ rol, animales }: { rol: string; animales: a
               )}
             </div>
         </div>
-        <div className="w-3/4 mt-6">
+        <div className="w-full max-w-2xl mt-6">
             <h2 className="text-2xl text-center font-bold text-fucsia-oscuro">Otro tipo de mascotas</h2>
-              <div className="flex flex-wrap gap-4 justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {otros.length > 0 ? (
                 otros.map((animal) => (<Tarjeta key={animal.id} id={animal.id} nombre={animal.nombre} sexo={animal.sexo} imagen={animal.imagen} rol={rol} />))
               ) : (

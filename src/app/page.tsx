@@ -12,12 +12,12 @@ export default function Home() {
       <section className="relative w-full h-64 bg-cover bg-center" style={{ backgroundImage: `url(${headerImage.src})` }}>
       </section>
       {/*Panel de Más información*/}
-      <section className="p-8 flex justify-center">
-        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-3/4 flex">
-          <img src={dogInformation.src} alt="Dog picture" className="w-1/4 h-auto object-contain rounded-lg" />
-          <div className="mx-40 flex flex-col items-center justify-center">
+      <section className="p-4 sm:p-8 flex justify-center">
+        <div className="bg-rosa-gris p-4 sm:p-6 rounded-lg shadow-md w-full max-w-2xl flex flex-col sm:flex-row">
+          <img src={dogInformation.src} alt="Dog picture" className="sm:w-1/4 w-full h-auto object-contain rounded-lg" />
+          <div className="flex flex-col items-center justify-center">
             <h2 className="text-2xl font-bold font-qs">Nunca compres, adopta</h2>
-            <p className="text-negro mt-8">
+            <p className="text-negro sm:mt-8 mt-4 px-4">
             Cada año, millones de animales buscan un hogar lleno de amor. Adoptar no solo salva una vida, también llena la tuya de cariño y gratitud. Cuando eliges adoptar, das una oportunidad a un ser que lo necesita, combatiendo la cría irresponsable y el abandono. ¡Haz la diferencia y sé parte del cambio!
             </p>
           <Link href="/informacion"><button className="mt-4 allign-center bg-verde-claro text-negro font-bold font-qs px-4 py-2 rounded">Ver más</button></Link>
@@ -29,16 +29,16 @@ export default function Home() {
         <hr className="h-[3px] w-[90%] my-8 bg-fucsia-oscuro border-0" />
       </div>
       {/*Panel de Interes*/}
-      <section className="p-8 flex flex-col items-center">
-        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-1/2 flex flex-col items-center">
+      <section className="sm:p-8 p-2 flex flex-col items-center">
+        <div className="bg-rosa-gris p-6 rounded-lg shadow-md sm:w-1/2 w-full flex flex-col items-center">
           <h2 className="text-2xl font-bold font-qs">Escoge a tu animal de compañía</h2>
-          <div className="flex justify-center mt-4 space-x-20">
+          <div className="flex justify-center mt-4 sm:space-x-20 space-x-4">
             <div className="flex flex-col items-center">
               <form action="/adoptar" method="GET">
                 <input type="hidden" name="tipo" value="perro" />
                 <button type="submit" className="text-center">
                   <p className="text-center">Perro</p>
-                  <PiDogDuotone className="mt-2 text-negro h-auto sm:w-6 md:w-10 lg:w-14" />
+                  <PiDogDuotone className="mt-2 text-negro h-auto w-12" />
                 </button>
               </form>
             </div>
@@ -47,7 +47,7 @@ export default function Home() {
                 <input type="hidden" name="tipo" value="gato" />
                 <button type="submit" className="text-center">
                   <p className="text-center">Gato</p>
-                  <PiCatDuotone className="mt-2 text-negro h-auto sm:w-6 md:w-10 lg:w-14" />
+                  <PiCatDuotone className="mt-2 text-negro h-auto w-12" />
                 </button>
               </form>
             </div>
@@ -56,7 +56,7 @@ export default function Home() {
                 <input type="hidden" name="tipo" value="otros" />
                 <button type="submit" className="text-center">
                   <p className="text-center">Otros...</p>
-                  <LuDiamondPlus className="mt-2 h-auto sm:w-6 md:w-10 lg:w-14" />
+                  <LuDiamondPlus className="mt-2 h-auto w-12" />
                 </button>
               </form>
             </div>
@@ -68,10 +68,10 @@ export default function Home() {
         <hr className="h-[3px] w-[90%] my-8 bg-fucsia-oscuro border-0" />
       </div>
       {/*Panel de Guía*/}
-      <section className="p-8 flex flex-col items-center">
-        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-2/3 flex flex-col items-center">
+      <section className="sm:p-8 p-2 flex flex-col items-center">
+        <div className="bg-rosa-gris p-6 rounded-lg shadow-md sm:w-2/3 w-full flex flex-col items-center">
           <h2 className="text-2xl font-bold font-qs">Pasos para adoptar a un animal</h2>
-          <div className="grid grid-cols-2 gap-16 mt-4 mx-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 mt-4 mx-4 sm:mx-20">
           {[
             { titulo: 'Inicia sesión', info: 'Accede a tu cuenta o regístrate para empezar tu proceso de adopción.', logo: 'FaUser', link: '/auth/login' },
             { titulo: 'Usa los filtros', info: 'Filtra por especie, tamaño o edad para encontrar tu compañero ideal.', logo: 'FaSearch', link: '/adoptar' },

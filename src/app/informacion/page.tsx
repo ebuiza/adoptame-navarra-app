@@ -7,10 +7,10 @@ export default function Home() {
     <main className="mx-auto">
       
       {/*Panel de Importante*/}
-      <section className="p-8 flex justify-center">
-        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-2/3 flex flex-col items-center">
-            <h2 className="text-2xl font-bold font-qs">La importancia de la adopción</h2>
-            <p className="text-negro mt-8 mx-40">
+      <section className="p-8 flex flex-col items-center">
+        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-full max-w-2xl mx-auto px-4 flex flex-col items-center">
+            <h2 className="text-2xl font-bold font-qs text-center">La importancia de la adopción</h2>
+            <p className="text-negro mt-8 mx-4 sm:mx-40">
             Cada año, millones de animales buscan un hogar lleno de amor. Adoptar no solo salva una vida, también llena la tuya de cariño y gratitud. Cuando eliges adoptar, das una oportunidad a un ser que lo necesita, combatiendo la cría irresponsable y el abandono. ¡Haz la diferencia y sé parte del cambio!
             </p>
         </div>
@@ -21,9 +21,9 @@ export default function Home() {
       </div>
       {/*Panel de Por qué adoptar*/}
       <section className="p-8 flex flex-col items-center">
-        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-2/3 flex flex-col items-center">
-          <h2 className="text-2xl font-bold font-qs">¿Por qué adoptar?</h2>
-          <p className="text-negro mt-8 mx-40">
+        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-full max-w-2xl mx-auto px-4 flex flex-col items-center">
+          <h2 className="text-2xl font-bold font-qs text-center">¿Por qué adoptar?</h2>
+          <p className="text-negro mt-8 mx-4 sm:mx-40">
             Adoptar significa brindar una segunda oportunidad a un animal que ha sufrido el abandono o el maltrato. Es un acto de amor y responsabilidad que contribuye a reducir la cantidad de animales en refugios y situación de calle. Además, al adoptar, ayudas a combatir la cría indiscriminada y promueves la tenencia responsable, dándole a un ser vivo una vida digna y llena de cariño. ¡Transforma una vida y enriquece la tuya!
           </p>
         </div>
@@ -34,8 +34,8 @@ export default function Home() {
       </div>
       {/*Panel de Animales antes y después*/}
       <section className="p-8 flex flex-col items-center">
-        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-2/3 flex flex-col items-center">
-          <h2 className="text-2xl font-bold font-qs">Animales adoptados</h2>
+        <div className="bg-rosa-gris p-6 rounded-lg shadow-md w-full max-w-2xl mx-auto px-4 flex flex-col items-center">
+          <h2 className="text-2xl font-bold font-qs text-center">Animales adoptados</h2>
           <p className="text-negro mt-8">
             Os mostramos fotos de algunos de nuestros animales antes de ser adoptados y después de convivir un periodo de tiempo con sus familias.
           </p>

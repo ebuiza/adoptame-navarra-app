@@ -9,7 +9,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-1/4">
+      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-full max-w-2xl mx-auto px-4">
         <h2 className="text-center text-2xl font-bold text-negro mb-4">Inicio de sesión</h2>
         {loginState?.error && <p className="text-red-500 text-sm text-center">{loginState.error}</p>}
         {recoverState?.error && <p className="text-red-500 text-sm text-center">{recoverState.error}</p>}

@@ -8,7 +8,7 @@ export default function altaAnimal() {
   
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-1/2 mx-auto">
+      <div className="bg-rosa-gris p-8 rounded-lg shadow-lg w-full max-w-2xl mx-auto px-4">
         <h2 className="text-center text-2xl font-bold text-negro mb-4">Registra una mascota</h2>
         <form className="space-y-4">
           <div>
